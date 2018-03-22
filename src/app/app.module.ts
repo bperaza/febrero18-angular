@@ -9,6 +9,7 @@ import { APP_ROUTES } from './app.routes';
 
 // Modulos
 import { PagesModule } from './pages/pages.module';
+import { PipesModule } from './pipes/pipes.module';
 
 // Services
 import { SettingsService } from './services/settings.service';
@@ -20,6 +21,9 @@ import { LoginGuardGuard } from './services/login-guard.guard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
+import { UploadService } from './services/upload.service';
+
+
 
 
 
@@ -39,9 +43,15 @@ import { RegisterComponent } from './login/register.component';
     PagesModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule, 
+    PipesModule
   ],
-  providers: [SettingsService, SidebarService, UsuarioService, LoginGuardGuard],
+  providers: [
+    SettingsService, 
+    SidebarService, 
+    UsuarioService, 
+    UploadService,  
+    LoginGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

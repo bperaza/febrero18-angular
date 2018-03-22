@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/Router';
 import { UsuarioService } from '../../services/usuario.service';
+import { Usuario } from '../../models/usuario.model';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,8 @@ import { UsuarioService } from '../../services/usuario.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  
+  usuario: Usuario;
 
   constructor(
     private router: Router, 
@@ -16,7 +19,7 @@ export class HeaderComponent implements OnInit {
     }
 
   ngOnInit() {
-    
+    this.usuario = this.usuarioServ.usuario;
   }
 
 }

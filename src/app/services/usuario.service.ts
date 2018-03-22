@@ -5,6 +5,7 @@ import { URL_SERVICIOS } from '../config/config';
 import { Router } from '@angular/Router';
 import 'rxjs/add/operator/map';
 import swal from 'sweetalert2';
+import { UploadService } from './upload.service';
 
 // import * as swal from 'sweetalert';
 
@@ -16,12 +17,15 @@ export class UsuarioService {
 
   constructor( 
       public router: Router,
-      public http: HttpClient ) {
+      public http: HttpClient,
+      public uploadServ: UploadService ) {
       
-        console.log('Service Usuario OK!!');
+        // console.log('Service Usuario OK!!');
         this.cargarLocalStorage();
 
    }
+
+
 
   cargarLocalStorage() {
     if (localStorage.getItem('token')) {
@@ -69,7 +73,6 @@ export class UsuarioService {
 
   login (usuario: Usuario, recordar: boolean= false) {
     let url = URL_SERVICIOS + '/login';
-    
     if ( recordar ) {
       localStorage.setItem('email', usuario.email);
     }else {
@@ -109,6 +112,42 @@ export class UsuarioService {
             // swal ('Usuario Creado', usuario.email, 'success');
             return resp.usuario;
         });
+   }
+
+   actualizarUsuario (usuario: Usuario) {
+     let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+     url += '?token=' +  this.token;
+     return this.http.put(url, usuario)
+         .map((resp: any) => {
+            
+            swal({
+              position: 'center',
+              type: 'success',
+              title: 'Usuario Actualizado',
+              showConfirmButton: false,
+              timer: 1500
+            });
+     } ) ;
+
+   }
+
+   cambiarImagen( file: File, id: string ) {
+      this.uploadServ.subirArchivo(file, 'usuarios', id)
+          .then ( (resp: any) => {
+              console.log(resp);
+              this.usuario.img = resp.usuario.img;   
+              swal({
+                position: 'center',
+                type: 'success',
+                title: 'Imagen de Usuario Actualizada',
+                showConfirmButton: false,
+                timer: 1500
+              });
+               this.guardarLocalStorage(this.usuario._id, this.token, this.usuario);
+          })
+          .catch ( resp => {
+              console.log(resp);
+          });
    }
 
 }

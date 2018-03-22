@@ -10,7 +10,7 @@ import { UsuarioService } from '../../services/usuario.service';
 export class SidebarComponent implements OnInit {
 
   constructor(
-    public usuarioServ: UsuarioService,
+    public usuarioServ: UsuarioService, 
     public _sidebar: SidebarService) { }
 
   ngOnInit() {
