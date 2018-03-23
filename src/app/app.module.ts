@@ -16,12 +16,14 @@ import { SettingsService } from './services/settings.service';
 import { SidebarService } from './services/sidebar.service';
 import { UsuarioService } from './services/usuario.service';
 import { LoginGuardGuard } from './services/login-guard.guard';
+import { UploadService } from './services/upload.service';
+import { ModalUploadService } from './components/modal-upload/modal-upload.service';
+
 
 // Componentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
-import { UploadService } from './services/upload.service';
 
 
 
@@ -50,7 +52,8 @@ import { UploadService } from './services/upload.service';
     SettingsService, 
     SidebarService, 
     UsuarioService, 
-    UploadService,  
+    UploadService,
+    ModalUploadService,  
     LoginGuardGuard],
   bootstrap: [AppComponent]
 })

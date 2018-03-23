@@ -8,14 +8,19 @@ export class ImagenPipe implements PipeTransform {
 
   transform(img: string, tipo: string = 'usuario'): any {
     let url = URL_SERVICIOS + '/img/';
+    
+    if (! img ) { 
+      // Sin Imagen
+      return url + 'xxxx';
+    } 
 
+    
     // Si es una img del Google es https
     if (img.indexOf('https') >= 0) {
+      // Se deja la Imagen de Google SignIn
       return img;
-    }
-    if (! img ) { 
-      return url = 'xxx';
-    }  
+    } 
+     
     return url + img;
     /*
     if (tipo === 'usuario') {

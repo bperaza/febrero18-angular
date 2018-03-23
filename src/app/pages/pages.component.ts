@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // Mandar llamar libreria externa jQuery del Template
-declare function init_plugins();
+declare function init_plugins(); 
 
 
 @Component({
